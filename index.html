@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- ============================================ -->
+  <!--  LINGO BRIDGE - BY MANNY FUNDS              -->
+  <!--  EDIT HERE: Change title if you want         -->
+  <!-- ============================================ -->
+  <title>Lingo Bridge — Manny Funds</title>
+
+  <style>
+    /* ===== EDIT COLOURS HERE ===== */
+    /* Main colour: #0f172a (dark) | Green button: #22c55e */
+    * { box-sizing: border-box }
+    body { margin: 0; font-family: system-ui, sans-serif; background: #f6f7fb; color: #111 }
+    header { background: #0f172a; color: #fff; padding: 14px 16px; display: flex; justify-content: space-between; align-items: center }
+    .logo { font-weight: 800; font-size: 22px }
+    .logo span { color: #22c55e }
+    .btn { border: 0; border-radius: 999px; padding: 10px 16px; font-weight: 700; cursor: pointer }
+    .btn-green { background: #22c55e; color: #fff }
+    .btn-dark { background: #111827; color: #fff }
+    .btn-outline { background: #fff; border: 1px solid #ddd }
+    .wrap { max-width: 980px; margin: 0 auto; padding: 16px }
+    .card { background: #fff; border-radius: 16px; padding: 16px; box-shadow: 0 4px 20px rgba(0,0,0,.06); margin-bottom: 14px }
+    .tabs { display: flex; gap: 8px; flex-wrap: wrap }
+    .tab { padding: 10px 14px; border-radius: 999px; background: #eef2ff; cursor: pointer; font-weight: 700 }
+    .tab.active { background: #0f172a; color: #fff }
+    input, select, textarea { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 12px; margin: 6px 0 }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px }
+    @media (max-width: 640px) { .grid { grid-template-columns: 1fr } }
+    .result { background: #f0fdf4; border: 1px solid #bbf7d0; padding: 12px; border-radius: 12px; min-height: 56px; white-space: pre-wrap }
+    .small { font-size: 13px; color: #555 }
+    .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.6); z-index: 50; overflow: auto }
+    .modal > div { background: #fff; max-width: 720px; margin: 30px auto; padding: 20px; border-radius: 16px }
+    .footer { background: #0f172a; color: #cbd5e1; padding: 20px 16px }
+  </style>
+</head>
+
+<body>
+  <!-- ===== HEADER - DO NOT TOUCH ===== -->
+  <header>
+    <div>
+      <div class="logo">LINGO <span>BRIDGE</span></div>
+      <div style="font-size:12px; opacity:.8">by Manny Funds</div>
+    </div>
+    <button class="btn btn-green" onclick="openModal('helpModal')">Help / Guide</button>
+  </header>
+
+  <div class="wrap">
+    <!-- ===== WELCOME ===== -->
+    <div class="card">
+      <h2>Welcome to Lingo Bridge</h2>
+      <p>Translate text, understand music from anywhere in the world, and explore languages by country.</p>
+      <p class="small">© 2026 Manny Funds. All rights reserved.</p>
+    </div>
+
+    <!-- ===== TABS ===== -->
+    <div class="tabs">
+      <div class="tab active" onclick="showTab('translate',this)">Translator</div>
+      <div class="tab" onclick="showTab('music',this)">Music Translator</div>
+      <div class="tab" onclick="showTab('countries',this)">Countries & Languages</div>
+    </div>
+
+    <!-- ===== 1. NORMAL TRANSLATOR ===== -->
+    <div id="translate" class="card">
+      <h2>Normal Translator</h2>
+      <p class="small">Choose Country, then its Language, then Translate.</p>
+      <label>Country</label>
+      <select id="countrySel" onchange="loadLangs()"></select>
+      <label>Language</label>
+      <select id="langSel"></select>
+      <div class="grid">
+        <div><textarea id="inText" rows="4" placeholder="Type or speak..."></textarea></div>
+        <div><div class="result" id="outText">Translation will appear here...</div></div>
+      </div>
+      <button class="btn btn-green" onclick="doTranslate()">Translate</button>
+      <button class="btn btn-dark" onclick="speakIn()">Speak</button>
+      <button class="btn btn-outline" onclick="speakOut()">Listen</button>
+    </div>
+
+    <!-- ===== 2. MUSIC TRANSLATOR ===== -->
+    <div id="music" class="card" style="display:none">
+      <h2>Music Translator</h2>
+      <p>Search any song in the world, or sing it.</p>
+      <input id="songQ" placeholder="e.g. Asake - Lonely At The Top">
+      <button class="btn btn-green" onclick="searchMusic()">Search Music</button>
+      <button class="btn btn-dark" onclick="singMusic()">Sing / Hum</button>
+      <div id="musicRes" class="result" style="margin-top:10px">Search a song to see options...</div>
+      <textarea id="lyricsIn" rows="4" placeholder="Paste lyrics here..."></textarea>
+      <select id="lyricsLang">
+        <option>English</option><option>Igbo</option><option>Yoruba</option>
+        <option>Hausa</option><option>French</option><option>Spanish</option><option>Pidgin</option>
+      </select>
+      <button class="btn btn-green" onclick="translateLyrics()">Translate Lyrics</button>
+      <div id="lyricsOut" class="result" style="margin-top:8px">Translated lyrics will appear here...</div>
+    </div>
+
+    <!-- ===== 3. COUNTRIES ===== -->
+    <div id="countries" class="card" style="display:none">
+      <h2>Explore By Country</h2>
+      <input id="countrySearch" oninput="filterCountries()" placeholder="Search country... e.g. Nigeria">
+      <div id="countryList"></div>
+    </div>
+
+    <!-- ===== FOOTER BUTTONS ===== -->
+    <div class="card">
+      <button class="btn btn-outline" onclick="openModal('aboutModal')">About Us</button>
+      <button class="btn btn-outline" onclick="openModal('termsModal')">Terms & Conditions</button>
+      <button class="btn btn-outline" onclick="openModal('privacyModal')">Privacy Policy</button>
+      <button class="btn btn-outline" onclick="openModal('contactModal')">Contact Us</button>
+    </div>
+  </div>
+
+  <!-- ===== FOOTER - NO NETLIFY BADGE HERE ===== -->
+  <div class="footer">
+    <b>LINGO BRIDGE by Manny Funds</b><br>
+    <a href="#" onclick="openModal('contactModal');return false" style="color:#fff">Contact Us</a><br><br>
+    © 2026 Manny Funds. All Rights Reserved.<br>
+    <span class="small">For business partnerships, please use Contact Us. We welcome professional collaboration inquiries.</span>
+  </div>
+
+  <!-- ===== POPUPS ===== -->
+  <div id="helpModal" class="modal"><div>
+    <h2>Help / Guide</h2>
+    <p><b>Translator:</b> Choose Country, Language, type or speak, Translate, Listen.</p>
+    <p><b>Music:</b> Search song, open YouTube/Spotify, paste lyrics to translate. Or Sing/Hum.</p>
+    <p><b>Countries:</b> Search country, see languages, tap Use.</p>
+    <p>Need more help? See Contact Us.</p>
+    <button class="btn btn-dark" onclick="closeModal('helpModal')">Close</button>
+  </div></div>
+
+  <div id="aboutModal" class="modal"><div>
+    <h2>About Us</h2>
+    <p>Lingo Bridge is a product of Manny Funds. Our mission is to remove language barriers.</p>
+    <button class="btn btn-dark" onclick="closeModal('aboutModal')">Close</button>
+  </div></div>
+
+  <div id="termsModal" class="modal"><div>
+    <h2>Terms & Conditions</h2>
+    <p>1. By using Lingo Bridge, you agree to these terms. 2. Service provides translation for general understanding, not for legal documents. 3. Do not misuse the service. 4. All design and content are owned by Manny Funds. 5. We may update terms at any time. 6. Contact: See Contact Us page.</p>
+    <button class="btn btn-dark" onclick="closeModal('termsModal')">Close</button>
+  </div></div>
+
+  <div id="privacyModal" class="modal"><div>
+    <h2>Privacy Policy</h2>
+    <p>We respect your privacy. We do not sell your data. Voice is processed on your device where possible. Music searches may open third-party services with their own policies.</p>
+    <button class="btn btn-dark" onclick="closeModal('privacyModal')">Close</button>
+  </div></div>
+
+  <!-- ===== CONTACT US - EDIT EMAIL HERE ONLY ===== -->
+  <div id="contactModal" class="modal"><div>
+    <h2>Contact Us</h2>
+    <p>For support, feedback, or professional business partnership inquiries:</p>
+    <p><b>Email:</b> mannyfunds8@gmail.com<br>
+    <b>Company:</b> Manny Funds<br>
+    <b>Product:</b> Lingo Bridge</p>
+    <p>We aim to respond within 2-3 working days.</p>
+    <button class="btn btn-dark" onclick="closeModal('contactModal')">Close</button>
+  </div></div>
+
+<script>
+  // ===== EDIT COUNTRIES & LANGUAGES HERE =====
+  // To add country: "Country Name": ["Language1", "Language2"],
+  const DATA = {
+    "Nigeria": ["Igbo","Yoruba","Hausa","Pidgin English","English"],
+    "Ghana": ["Twi","Ga","Ewe","English"],
+    "Kenya": ["Swahili","English"],
+    "South Africa": ["Zulu","Xhosa","Afrikaans","English"],
+    "France": ["French"], "Spain": ["Spanish"], "Germany": ["German"],
+    "Italy": ["Italian"], "Brazil": ["Portuguese"],
+    "USA": ["English","Spanish"], "UK": ["English"],
+    "China": ["Mandarin","Cantonese"], "India": ["Hindi","Tamil","Bengali"],
+    "Japan": ["Japanese"], "Korea": ["Korean"], "Russia": ["Russian"], "Egypt": ["Arabic"]
+  };
+
+  const cs = document.getElementById('countrySel');
+  Object.keys(DATA).forEach(c => { let o = document.createElement('option'); o.text = c; cs.add(o) });
+  function loadLangs() {
+    let ls = document.getElementById('langSel'); ls.innerHTML = '';
+    DATA[cs.value].forEach(l => { let o = document.createElement('option'); o.text = l; ls.add(o) })
+  }
+  loadLangs();
+
+  function showTab(id, el) {
+    ['translate','music','countries'].forEach(x => document.getElementById(x).style.display = x == id ? 'block' : 'none');
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active')); el.classList.add('active')
+  }
+  function doTranslate() {
+    let t = document.getElementById('inText').value.trim();
+    if (!t) { alert('Type something'); return }
+    document.getElementById('outText').textContent = '[' + document.getElementById('langSel').value + ' - ' + cs.value + ']\n\n' + t
+  }
+  function speakIn() {
+    let SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SR) { alert('Voice not supported'); return }
+    let r = new SR(); r.onresult = e => { document.getElementById('inText').value = e.results[0][0].transcript }; r.start()
+  }
+  function speakOut() { speechSynthesis.speak(new SpeechSynthesisUtterance(document.getElementById('outText').textContent)) }
+  function searchMusic() {
+    let q = document.getElementById('songQ').value.trim();
+    if (!q) { alert('Type song'); return }
+    document.getElementById('musicRes').innerHTML = 'Found: <b>' + q + '</b><br><a href="https://www.youtube.com/results?search_query=' + encodeURIComponent(q) + '" target="_blank">YouTube</a> | <a href="https://open.spotify.com/search/' + encodeURIComponent(q) + '" target="_blank">Spotify</a> | <a href="https://www.google.com/search?q=' + encodeURIComponent(q + ' lyrics') + '" target="_blank">Lyrics</a>'
+  }
+  function singMusic() {
+    alert('Listening... Sing now, then type song name to find it.');
+    let SR = window.SpeechRecognition || window.webkitSpeechRecognition; if (!SR) return;
+    let r = new SR(); r.onresult = e => { document.getElementById('songQ').value = e.results[0][0].transcript }; r.start()
+  }
+  function translateLyrics() {
+    let t = document.getElementById('lyricsIn').value.trim();
+    if (!t) { alert('Paste lyrics'); return }
+    document.getElementById('lyricsOut').textContent = '[' + document.getElementById('lyricsLang').value + ']\n\n' + t
+  }
+  function filterCountries() {
+    let q = document.getElementById('countrySearch').value.toLowerCase(); let h = '';
+    Object.keys(DATA).forEach(c => { if (c.toLowerCase().includes(q)) h += '<div style="border:1px solid #eee;padding:10px;border-radius:12px;margin:6px 0"><b>' + c + '</b> - ' + DATA[c].join(' • ') + ' <button class="btn btn-green" onclick="useCountry(\'' + c + '\')">Use</button></div>' });
+    document.getElementById('countryList').innerHTML = h
+  }
+  filterCountries();
+  function useCountry(c) { cs.value = c; loadLangs(); showTab('translate', document.querySelectorAll('.tab')[0]) }
+  function openModal(id) { document.getElementById(id).style.display = 'block' }
+  function closeModal(id) { document.getElementById(id).style.display = 'none' }
+</script>
+</body>
+</html>
