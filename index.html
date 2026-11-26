@@ -1,226 +1,222 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- ============================================ -->
-  <!--  LINGO BRIDGE - BY MANNY FUNDS              -->
-  <!--  EDIT HERE: Change title if you want         -->
-  <!-- ============================================ -->
-  <title>Lingo Bridge — Manny Funds</title>
-
-  <style>
-    /* ===== EDIT COLOURS HERE ===== */
-    /* Main colour: #0f172a (dark) | Green button: #22c55e */
-    * { box-sizing: border-box }
-    body { margin: 0; font-family: system-ui, sans-serif; background: #f6f7fb; color: #111 }
-    header { background: #0f172a; color: #fff; padding: 14px 16px; display: flex; justify-content: space-between; align-items: center }
-    .logo { font-weight: 800; font-size: 22px }
-    .logo span { color: #22c55e }
-    .btn { border: 0; border-radius: 999px; padding: 10px 16px; font-weight: 700; cursor: pointer }
-    .btn-green { background: #22c55e; color: #fff }
-    .btn-dark { background: #111827; color: #fff }
-    .btn-outline { background: #fff; border: 1px solid #ddd }
-    .wrap { max-width: 980px; margin: 0 auto; padding: 16px }
-    .card { background: #fff; border-radius: 16px; padding: 16px; box-shadow: 0 4px 20px rgba(0,0,0,.06); margin-bottom: 14px }
-    .tabs { display: flex; gap: 8px; flex-wrap: wrap }
-    .tab { padding: 10px 14px; border-radius: 999px; background: #eef2ff; cursor: pointer; font-weight: 700 }
-    .tab.active { background: #0f172a; color: #fff }
-    input, select, textarea { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 12px; margin: 6px 0 }
-    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px }
-    @media (max-width: 640px) { .grid { grid-template-columns: 1fr } }
-    .result { background: #f0fdf4; border: 1px solid #bbf7d0; padding: 12px; border-radius: 12px; min-height: 56px; white-space: pre-wrap }
-    .small { font-size: 13px; color: #555 }
-    .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.6); z-index: 50; overflow: auto }
-    .modal > div { background: #fff; max-width: 720px; margin: 30px auto; padding: 20px; border-radius: 16px }
-    .footer { background: #0f172a; color: #cbd5e1; padding: 20px 16px }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LingoBridge - Gold & Black</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif}
+body{background:#000;color:#fff;min-height:100vh}
+.gold{color:#FFD700}
+.btn-gold{background:linear-gradient(135deg,#FFD700,#FFA500);color:#000;border:none;padding:15px;border-radius:12px;font-weight:800;font-size:16px;width:100%;cursor:pointer;margin-top:10px}
+.btn-outline{background:transparent;color:#FFD700;border:2px solid #FFD700;padding:13px;border-radius:12px;font-weight:700;width:100%;cursor:pointer;margin-top:10px}
+.card{background:#111;border:1px solid #333;border-radius:16px;padding:18px;margin:12px 0}
+input,select{width:100%;padding:14px;border-radius:10px;border:1px solid #333;background:#1a1a1a;color:#fff;margin-top:8px;font-size:15px}
+.hidden{display:none!important}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.dash-btn{background:#1a1a1a;border:1px solid #FFD700;border-radius:16px;padding:20px 10px;text-align:center;cursor:pointer}
+.dash-btn span{font-size:28px;display:block}
+.dash-btn b{color:#FFD700;font-size:14px}
+.topbar{display:flex;justify-content:space-between;align-items:center;padding:16px;background:#0a0a0a;border-bottom:2px solid #FFD700}
+.logo{font-size:22px;font-weight:900}.logo span{color:#FFD700}
+.loader{position:fixed;inset:0;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:99}
+.spinner{width:60px;height:60px;border:4px solid #333;border-top:4px solid #FFD700;border-radius:50%;animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+</style>
 </head>
-
 <body>
-  <!-- ===== HEADER - DO NOT TOUCH ===== -->
-  <header>
-    <div>
-      <div class="logo">LINGO <span>BRIDGE</span></div>
-      <div style="font-size:12px; opacity:.8">by Manny Funds</div>
-    </div>
-    <button class="btn btn-green" onclick="openModal('helpModal')">Help / Guide</button>
-  </header>
 
-  <div class="wrap">
-    <!-- ===== WELCOME ===== -->
-    <div class="card">
-      <h2>Welcome to Lingo Bridge</h2>
-      <p>Translate text, understand music from anywhere in the world, and explore languages by country.</p>
-      <p class="small">© 2026 Manny Funds. All rights reserved.</p>
-    </div>
+<!-- 1. LOADING SCREEN -->
+<div id="loader" class="loader">
+  <div style="font-size:50px">🌉</div>
+  <h1 style="font-size:32px;margin:10px 0">Lingo<span style="color:#FFD700">Bridge</span></h1>
+  <p style="color:#aaa">Connecting Languages...</p>
+  <div class="spinner" style="margin-top:20px"></div>
+  <p id="loadText" style="color:#FFD700;margin-top:12px">Loading...</p>
+</div>
 
-    <!-- ===== TABS ===== -->
-    <div class="tabs">
-      <div class="tab active" onclick="showTab('translate',this)">Translator</div>
-      <div class="tab" onclick="showTab('music',this)">Music Translator</div>
-      <div class="tab" onclick="showTab('countries',this)">Countries & Languages</div>
-    </div>
+<!-- 2. LOGIN / SIGNUP SCREEN -->
+<div id="authScreen" class="hidden" style="padding:24px;max-width:420px;margin:0 auto;padding-top:50px">
+  <div style="text-align:center">
+    <div style="font-size:60px">🌉</div>
+    <h1 style="font-size:34px">Lingo<span class="gold">Bridge</span></h1>
+    <p style="color:#aaa;margin-top:8px">Learn, Translate & Connect in Any Language</p>
+  </div>
+  <div class="card" style="margin-top:24px">
+    <h3>Welcome Back 👋</h3>
+    <p style="color:#aaa;font-size:13px;margin-top:4px">Login to continue to your Dashboard</p>
+    <input id="emailInput" type="email" placeholder="Email address e.g. you@gmail.com">
+    <input id="passInput" type="password" placeholder="Password">
+    <button class="btn-gold" onclick="loginWithEmail()">LOGIN WITH EMAIL →</button>
+    <button class="btn-outline" onclick="loginWithGoogle()">G Continue with Google</button>
+    <button class="btn-outline" onclick="loginWithGoogle()" style="border-color:#fff;color:#fff">G Continue with Gmail</button>
+    <p style="text-align:center;color:#aaa;font-size:13px;margin-top:14px">No account? <b style="color:#FFD700;cursor:pointer" onclick="createAccount()">Create Account</b></p>
+  </div>
+  <p style="text-align:center;color:#555;font-size:12px;margin-top:10px">Gold & Black Edition • v1.0</p>
+</div>
 
-    <!-- ===== 1. NORMAL TRANSLATOR ===== -->
-    <div id="translate" class="card">
-      <h2>Normal Translator</h2>
-      <p class="small">Choose Country, then its Language, then Translate.</p>
-      <label>Country</label>
-      <select id="countrySel" onchange="loadLangs()"></select>
-      <label>Language</label>
-      <select id="langSel"></select>
-      <div class="grid">
-        <div><textarea id="inText" rows="4" placeholder="Type or speak..."></textarea></div>
-        <div><div class="result" id="outText">Translation will appear here...</div></div>
-      </div>
-      <button class="btn btn-green" onclick="doTranslate()">Translate</button>
-      <button class="btn btn-dark" onclick="speakIn()">Speak</button>
-      <button class="btn btn-outline" onclick="speakOut()">Listen</button>
-    </div>
-
-    <!-- ===== 2. MUSIC TRANSLATOR ===== -->
-    <div id="music" class="card" style="display:none">
-      <h2>Music Translator</h2>
-      <p>Search any song in the world, or sing it.</p>
-      <input id="songQ" placeholder="e.g. Asake - Lonely At The Top">
-      <button class="btn btn-green" onclick="searchMusic()">Search Music</button>
-      <button class="btn btn-dark" onclick="singMusic()">Sing / Hum</button>
-      <div id="musicRes" class="result" style="margin-top:10px">Search a song to see options...</div>
-      <textarea id="lyricsIn" rows="4" placeholder="Paste lyrics here..."></textarea>
-      <select id="lyricsLang">
-        <option>English</option><option>Igbo</option><option>Yoruba</option>
-        <option>Hausa</option><option>French</option><option>Spanish</option><option>Pidgin</option>
-      </select>
-      <button class="btn btn-green" onclick="translateLyrics()">Translate Lyrics</button>
-      <div id="lyricsOut" class="result" style="margin-top:8px">Translated lyrics will appear here...</div>
-    </div>
-
-    <!-- ===== 3. COUNTRIES ===== -->
-    <div id="countries" class="card" style="display:none">
-      <h2>Explore By Country</h2>
-      <input id="countrySearch" oninput="filterCountries()" placeholder="Search country... e.g. Nigeria">
-      <div id="countryList"></div>
-    </div>
-
-    <!-- ===== FOOTER BUTTONS ===== -->
-    <div class="card">
-      <button class="btn btn-outline" onclick="openModal('aboutModal')">About Us</button>
-      <button class="btn btn-outline" onclick="openModal('termsModal')">Terms & Conditions</button>
-      <button class="btn btn-outline" onclick="openModal('privacyModal')">Privacy Policy</button>
-      <button class="btn btn-outline" onclick="openModal('contactModal')">Contact Us</button>
+<!-- 3. DASHBOARD -->
+<div id="dashboard" class="hidden">
+  <div class="topbar">
+    <div class="logo">Lingo<span>Bridge</span></div>
+    <div style="display:flex;gap:8px;align-items:center">
+      <span id="userName" style="font-size:13px;color:#FFD700">Hi, User</span>
+      <button onclick="logout()" style="background:#FFD700;border:none;padding:7px 12px;border-radius:20px;font-weight:700;cursor:pointer">Logout</button>
     </div>
   </div>
+  <div style="padding:18px;max-width:500px;margin:0 auto">
+    <h2 style="font-size:24px">Welcome back, <span class="gold" id="welcomeName">Friend</span> 👋</h2>
+    <p style="color:#aaa;margin:6px 0 16px">What do you want to do today?</p>
 
-  <!-- ===== FOOTER - NO NETLIFY BADGE HERE ===== -->
-  <div class="footer">
-    <b>LINGO BRIDGE by Manny Funds</b><br>
-    <a href="#" onclick="openModal('contactModal');return false" style="color:#fff">Contact Us</a><br><br>
-    © 2026 Manny Funds. All Rights Reserved.<br>
-    <span class="small">For business partnerships, please use Contact Us. We welcome professional collaboration inquiries.</span>
+    <div class="card" style="background:linear-gradient(135deg,#FFD700,#FF8C00);color:#000;border:none">
+      <b style="font-size:18px">🔥 Daily Streak: 5 Days</b><br>
+      <span style="font-size:13px">You are doing great! Keep it up.</span>
+      <div style="background:#0003;height:8px;border-radius:20px;margin-top:10px;overflow:hidden"><div style="width:70%;height:100%;background:#000;border-radius:20px"></div></div>
+    </div>
+
+    <div class="grid">
+      <div class="dash-btn" onclick="showPage('translatePage')"><span>🔄</span><b>Translator</b><p style="color:#aaa;font-size:11px">Translate Anything</p></div>
+      <div class="dash-btn" onclick="showPage('dictionaryPage')"><span>📖</span><b>Dictionary</b><p style="color:#aaa;font-size:11px">Words & Meaning</p></div>
+      <div class="dash-btn" onclick="showPage('phrasePage')"><span>💬</span><b>Phrasebook</b><p style="color:#aaa;font-size:11px">Common Phrases</p></div>
+      <div class="dash-btn" onclick="showPage('learnPage')"><span>🎓</span><b>Learn</b><p style="color:#aaa;font-size:11px">Lessons & Quiz</p></div>
+      <div class="dash-btn" onclick="showPage('chatPage')"><span>💬</span><b>Chat</b><p style="color:#aaa;font-size:11px">Practice with AI</p></div>
+      <div class="dash-btn" onclick="showPage('profilePage')"><span>👤</span><b>Profile</b><p style="color:#aaa;font-size:11px">My Account</p></div>
+    </div>
+
+    <!-- TRANSLATOR PAGE -->
+    <div id="translatePage" class="card hidden">
+      <h3 class="gold">🔄 Translator</h3>
+      <label style="font-size:12px;color:#aaa">From</label>
+      <select id="fromLang"><option value="en">English</option><option value="ha">Hausa</option><option value="yo">Yoruba</option><option value="ig">Igbo</option><option value="fr">French</option><option value="es">Spanish</option></select>
+      <label style="font-size:12px;color:#aaa">To</label>
+      <select id="toLang"><option value="ha">Hausa</option><option value="yo">Yoruba</option><option value="ig">Igbo</option><option value="en">English</option><option value="fr">French</option></select>
+      <input id="transInput" placeholder="Type e.g. Hello, how are you?">
+      <button class="btn-gold" onclick="doTranslate()">TRANSLATE NOW</button>
+      <div id="transResult" style="background:#000;padding:14px;border-radius:10px;margin-top:12px;border:1px solid #FFD700;min-height:50px">Result go show here...</div>
+      <button class="btn-outline" onclick="showPage('home')">← Back to Dashboard</button>
+    </div>
+
+    <!-- DICTIONARY -->
+    <div id="dictionaryPage" class="card hidden">
+      <h3 class="gold">📖 Dictionary</h3>
+      <input id="dictInput" placeholder="Search word e.g. Love, Water...">
+      <button class="btn-gold" onclick="doDict()">SEARCH WORD</button>
+      <div id="dictResult" style="margin-top:12px;color:#ddd">Type word and search...</div>
+      <button class="btn-outline" onclick="showPage('home')">← Back</button>
+    </div>
+
+    <!-- PHRASEBOOK -->
+    <div id="phrasePage" class="card hidden">
+      <h3 class="gold">💬 Phrasebook</h3>
+      <div style="background:#1a1a1a;padding:12px;border-radius:10px;margin:8px 0"><b>Hello - Sannu (Hausa)</b><br><span style="color:#aaa;font-size:13px">Hello - E nle (Yoruba) • Ndewo (Igbo)</span></div>
+      <div style="background:#1a1a1a;padding:12px;border-radius:10px;margin:8px 0"><b>Thank you - Na gode</b><br><span style="color:#aaa;font-size:13px">E se - Daalu</span></div>
+      <div style="background:#1a1a1a;padding:12px;border-radius:10px;margin:8px 0"><b>How are you? - Yaya kake?</b><br><span style="color:#aaa;font-size:13px">Bawo ni? - Kedu?</span></div>
+      <div style="background:#1a1a1a;padding:12px;border-radius:10px;margin:8px 0"><b>I love you - Ina son ka</b><br><span style="color:#aaa;font-size:13px">Mo nife e - A hụrụ m gị n'anya</span></div>
+      <button class="btn-outline" onclick="showPage('home')">← Back</button>
+    </div>
+
+    <!-- LEARN -->
+    <div id="learnPage" class="card hidden">
+      <h3 class="gold">🎓 Learn</h3>
+      <p style="color:#aaa">Lesson 1: Greetings</p>
+      <div style="background:#1a1a1a;padding:14px;border-radius:10px;margin:10px 0"><b>What is "Hello" in Hausa?</b><br><button class="btn-outline" onclick="alert('Correct! Sannu 🎉')">Sannu</button><button class="btn-outline" onclick="alert('Try again')">Barka</button></div>
+      <button class="btn-outline" onclick="showPage('home')">← Back</button>
+    </div>
+
+    <!-- CHAT -->
+    <div id="chatPage" class="card hidden">
+      <h3 class="gold">💬 Practice Chat</h3>
+      <div id="chatBox" style="background:#000;padding:12px;border-radius:10px;min-height:120px"><p><b style="color:#FFD700">Lingo AI:</b> Hello! Sannu! How can I help you learn today?</p></div>
+      <input id="chatInput" placeholder="Type message...">
+      <button class="btn-gold" onclick="sendChat()">SEND</button>
+      <button class="btn-outline" onclick="showPage('home')">← Back</button>
+    </div>
+
+    <!-- PROFILE -->
+    <div id="profilePage" class="card hidden">
+      <h3 class="gold">👤 My Profile</h3>
+      <p><b>Name:</b> <span id="profileName">User</span></p>
+      <p><b>Email:</b> <span id="profileEmail">user@gmail.com</span></p>
+      <p><b>Level:</b> Beginner • <b>Points:</b> 250 XP</p>
+      <button class="btn-gold" onclick="logout()">LOGOUT</button>
+      <button class="btn-outline" onclick="showPage('home')">← Back</button>
+    </div>
+
   </div>
-
-  <!-- ===== POPUPS ===== -->
-  <div id="helpModal" class="modal"><div>
-    <h2>Help / Guide</h2>
-    <p><b>Translator:</b> Choose Country, Language, type or speak, Translate, Listen.</p>
-    <p><b>Music:</b> Search song, open YouTube/Spotify, paste lyrics to translate. Or Sing/Hum.</p>
-    <p><b>Countries:</b> Search country, see languages, tap Use.</p>
-    <p>Need more help? See Contact Us.</p>
-    <button class="btn btn-dark" onclick="closeModal('helpModal')">Close</button>
-  </div></div>
-
-  <div id="aboutModal" class="modal"><div>
-    <h2>About Us</h2>
-    <p>Lingo Bridge is a product of Manny Funds. Our mission is to remove language barriers.</p>
-    <button class="btn btn-dark" onclick="closeModal('aboutModal')">Close</button>
-  </div></div>
-
-  <div id="termsModal" class="modal"><div>
-    <h2>Terms & Conditions</h2>
-    <p>1. By using Lingo Bridge, you agree to these terms. 2. Service provides translation for general understanding, not for legal documents. 3. Do not misuse the service. 4. All design and content are owned by Manny Funds. 5. We may update terms at any time. 6. Contact: See Contact Us page.</p>
-    <button class="btn btn-dark" onclick="closeModal('termsModal')">Close</button>
-  </div></div>
-
-  <div id="privacyModal" class="modal"><div>
-    <h2>Privacy Policy</h2>
-    <p>We respect your privacy. We do not sell your data. Voice is processed on your device where possible. Music searches may open third-party services with their own policies.</p>
-    <button class="btn btn-dark" onclick="closeModal('privacyModal')">Close</button>
-  </div></div>
-
-  <!-- ===== CONTACT US - EDIT EMAIL HERE ONLY ===== -->
-  <div id="contactModal" class="modal"><div>
-    <h2>Contact Us</h2>
-    <p>For support, feedback, or professional business partnership inquiries:</p>
-    <p><b>Email:</b> mannyfunds8@gmail.com<br>
-    <b>Company:</b> Manny Funds<br>
-    <b>Product:</b> Lingo Bridge</p>
-    <p>We aim to respond within 2-3 working days.</p>
-    <button class="btn btn-dark" onclick="closeModal('contactModal')">Close</button>
-  </div></div>
+</div>
 
 <script>
-  // ===== EDIT COUNTRIES & LANGUAGES HERE =====
-  // To add country: "Country Name": ["Language1", "Language2"],
-  const DATA = {
-    "Nigeria": ["Igbo","Yoruba","Hausa","Pidgin English","English"],
-    "Ghana": ["Twi","Ga","Ewe","English"],
-    "Kenya": ["Swahili","English"],
-    "South Africa": ["Zulu","Xhosa","Afrikaans","English"],
-    "France": ["French"], "Spain": ["Spanish"], "Germany": ["German"],
-    "Italy": ["Italian"], "Brazil": ["Portuguese"],
-    "USA": ["English","Spanish"], "UK": ["English"],
-    "China": ["Mandarin","Cantonese"], "India": ["Hindi","Tamil","Bengali"],
-    "Japan": ["Japanese"], "Korea": ["Korean"], "Russia": ["Russian"], "Egypt": ["Arabic"]
-  };
+let texts=["Loading...","Connecting Languages...","Preparing Dashboard...","Almost Ready..."];
+let i=0;
+let loadInt=setInterval(()=>{document.getElementById('loadText').innerText=texts[i%texts.length];i++},700);
+setTimeout(()=>{
+  clearInterval(loadInt);
+  document.getElementById('loader').classList.add('hidden');
+  let saved=localStorage.getItem('lingoUser');
+  if(saved){enterDashboard(JSON.parse(saved));}
+  else{document.getElementById('authScreen').classList.remove('hidden');}
+},3000);
 
-  const cs = document.getElementById('countrySel');
-  Object.keys(DATA).forEach(c => { let o = document.createElement('option'); o.text = c; cs.add(o) });
-  function loadLangs() {
-    let ls = document.getElementById('langSel'); ls.innerHTML = '';
-    DATA[cs.value].forEach(l => { let o = document.createElement('option'); o.text = l; ls.add(o) })
-  }
-  loadLangs();
-
-  function showTab(id, el) {
-    ['translate','music','countries'].forEach(x => document.getElementById(x).style.display = x == id ? 'block' : 'none');
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active')); el.classList.add('active')
-  }
-  function doTranslate() {
-    let t = document.getElementById('inText').value.trim();
-    if (!t) { alert('Type something'); return }
-    document.getElementById('outText').textContent = '[' + document.getElementById('langSel').value + ' - ' + cs.value + ']\n\n' + t
-  }
-  function speakIn() {
-    let SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-    if (!SR) { alert('Voice not supported'); return }
-    let r = new SR(); r.onresult = e => { document.getElementById('inText').value = e.results[0][0].transcript }; r.start()
-  }
-  function speakOut() { speechSynthesis.speak(new SpeechSynthesisUtterance(document.getElementById('outText').textContent)) }
-  function searchMusic() {
-    let q = document.getElementById('songQ').value.trim();
-    if (!q) { alert('Type song'); return }
-    document.getElementById('musicRes').innerHTML = 'Found: <b>' + q + '</b><br><a href="https://www.youtube.com/results?search_query=' + encodeURIComponent(q) + '" target="_blank">YouTube</a> | <a href="https://open.spotify.com/search/' + encodeURIComponent(q) + '" target="_blank">Spotify</a> | <a href="https://www.google.com/search?q=' + encodeURIComponent(q + ' lyrics') + '" target="_blank">Lyrics</a>'
-  }
-  function singMusic() {
-    alert('Listening... Sing now, then type song name to find it.');
-    let SR = window.SpeechRecognition || window.webkitSpeechRecognition; if (!SR) return;
-    let r = new SR(); r.onresult = e => { document.getElementById('songQ').value = e.results[0][0].transcript }; r.start()
-  }
-  function translateLyrics() {
-    let t = document.getElementById('lyricsIn').value.trim();
-    if (!t) { alert('Paste lyrics'); return }
-    document.getElementById('lyricsOut').textContent = '[' + document.getElementById('lyricsLang').value + ']\n\n' + t
-  }
-  function filterCountries() {
-    let q = document.getElementById('countrySearch').value.toLowerCase(); let h = '';
-    Object.keys(DATA).forEach(c => { if (c.toLowerCase().includes(q)) h += '<div style="border:1px solid #eee;padding:10px;border-radius:12px;margin:6px 0"><b>' + c + '</b> - ' + DATA[c].join(' • ') + ' <button class="btn btn-green" onclick="useCountry(\'' + c + '\')">Use</button></div>' });
-    document.getElementById('countryList').innerHTML = h
-  }
-  filterCountries();
-  function useCountry(c) { cs.value = c; loadLangs(); showTab('translate', document.querySelectorAll('.tab')[0]) }
-  function openModal(id) { document.getElementById(id).style.display = 'block' }
-  function closeModal(id) { document.getElementById(id).style.display = 'none' }
+function createAccount(){
+  let email=document.getElementById('emailInput').value||prompt("Enter your email:");
+  if(!email) return alert("Enter email first");
+  let user={name:email.split('@')[0],email:email};
+  localStorage.setItem('lingoUser',JSON.stringify(user));
+  alert("Account Created! Welcome "+user.name+" 🎉");
+  enterDashboard(user);
+}
+function loginWithEmail(){
+  let email=document.getElementById('emailInput').value;
+  if(!email) return alert("Please enter your email");
+  let user={name:email.split('@')[0],email:email};
+  localStorage.setItem('lingoUser',JSON.stringify(user));
+  enterDashboard(user);
+}
+function loginWithGoogle(){
+  let email=prompt("Enter your Gmail to continue with Google:","you@gmail.com");
+  if(!email) return;
+  let user={name:email.split('@')[0],email:email};
+  localStorage.setItem('lingoUser',JSON.stringify(user));
+  enterDashboard(user);
+}
+function enterDashboard(user){
+  document.getElementById('authScreen').classList.add('hidden');
+  document.getElementById('dashboard').classList.remove('hidden');
+  document.getElementById('userName').innerText="Hi, "+user.name;
+  document.getElementById('welcomeName').innerText=user.name;
+  document.getElementById('profileName').innerText=user.name;
+  document.getElementById('profileEmail').innerText=user.email;
+  window.scrollTo(0,0);
+}
+function logout(){
+  localStorage.removeItem('lingoUser');
+  location.reload();
+}
+function showPage(id){
+  ['translatePage','dictionaryPage','phrasePage','learnPage','chatPage','profilePage'].forEach(x=>document.getElementById(x).classList.add('hidden'));
+  if(id!=='home') document.getElementById(id).classList.remove('hidden');
+  window.scrollTo(0,300);
+}
+function doTranslate(){
+  let t=document.getElementById('transInput').value.toLowerCase();
+  let to=document.getElementById('toLang').value;
+  let map={hello:{ha:"Sannu",yo:"E nle",ig:"Ndewo",en:"Hello",fr:"Bonjour"}, "how are you":{ha:"Yaya kake?",yo:"Bawo ni?",ig:"Kedu?"}, "thank you":{ha:"Na gode",yo:"E se",ig:"Daalu"}, "i love you":{ha:"Ina son ka",yo:"Mo nife e",ig:"A hụrụ m gị n'anya"}};
+  let found="...";
+  for(let k in map){ if(t.includes(k)) found=map[k][to]||map[k]['en']; }
+  if(found==="...") found="Translation: ["+document.getElementById('transInput').value+"] in "+to+" (Demo - full version coming)";
+  document.getElementById('transResult').innerHTML="<b style='color:#FFD700'>Result:</b><br>"+found;
+}
+function doDict(){
+  let w=document.getElementById('dictInput').value.toLowerCase();
+  let d={love:"Soyu - Kauna (Hausa) • Ife (Yoruba) • Ihunanya (Igbo)",water:"Ruwa • Omi • Mmiri",hello:"Sannu • E nle • Ndewo",thank:"Na gode • E se • Daalu"};
+  document.getElementById('dictResult').innerHTML=d[w]||"Meaning of <b>"+w+"</b>: Demo dictionary - e dey work!";
+}
+function sendChat(){
+  let v=document.getElementById('chatInput').value;
+  if(!v) return;
+  document.getElementById('chatBox').innerHTML+="<p><b>You:</b> "+v+"</p><p><b style='color:#FFD700'>Lingo AI:</b> Nice! In Hausa, that is 'Sannu'. Keep practicing! 🌉</p>";
+  document.getElementById('chatInput').value="";
+}
 </script>
 </body>
 </html>
