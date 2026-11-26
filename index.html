@@ -1,222 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LingoBridge - Gold & Black</title>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LingoBridge - Pro</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif}
-body{background:#000;color:#fff;min-height:100vh}
+body{background:#0a0a0a;color:#fff;padding-bottom:85px}
+.top{background:#000;border-bottom:2px solid #FFD700;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10}
+.logo{font-weight:900;font-size:20px}.logo span{color:#FFD700}
+.stars{background:#1a1a1a;border:1px solid #FFD700;padding:6px 12px;border-radius:20px;font-weight:800;color:#FFD700;font-size:13px}
+.card{background:#141414;border:1px solid #222;border-radius:16px;padding:16px;margin:12px 14px}
 .gold{color:#FFD700}
-.btn-gold{background:linear-gradient(135deg,#FFD700,#FFA500);color:#000;border:none;padding:15px;border-radius:12px;font-weight:800;font-size:16px;width:100%;cursor:pointer;margin-top:10px}
-.btn-outline{background:transparent;color:#FFD700;border:2px solid #FFD700;padding:13px;border-radius:12px;font-weight:700;width:100%;cursor:pointer;margin-top:10px}
-.card{background:#111;border:1px solid #333;border-radius:16px;padding:18px;margin:12px 0}
-input,select{width:100%;padding:14px;border-radius:10px;border:1px solid #333;background:#1a1a1a;color:#fff;margin-top:8px;font-size:15px}
+.btn{background:linear-gradient(135deg,#FFD700,#FF8C00);color:#000;border:none;padding:13px;border-radius:12px;font-weight:800;width:100%;cursor:pointer}
+.btn2{background:#1a1a1a;color:#FFD700;border:1px solid #FFD700;padding:11px;border-radius:12px;font-weight:700;width:100%;cursor:pointer}
+input,select{width:100%;padding:13px;border-radius:10px;border:1px solid #333;background:#1e1e1e;color:#fff;margin-top:8px}
 .hidden{display:none!important}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.dash-btn{background:#1a1a1a;border:1px solid #FFD700;border-radius:16px;padding:20px 10px;text-align:center;cursor:pointer}
-.dash-btn span{font-size:28px;display:block}
-.dash-btn b{color:#FFD700;font-size:14px}
-.topbar{display:flex;justify-content:space-between;align-items:center;padding:16px;background:#0a0a0a;border-bottom:2px solid #FFD700}
-.logo{font-size:22px;font-weight:900}.logo span{color:#FFD700}
-.loader{position:fixed;inset:0;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:99}
-.spinner{width:60px;height:60px;border:4px solid #333;border-top:4px solid #FFD700;border-radius:50%;animation:spin 1s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mini{background:#1e1e1e;border:1px solid #333;border-radius:14px;padding:16px 8px;text-align:center;cursor:pointer}
+.mini b{color:#FFD700;font-size:13px}
+.bottom{position:fixed;bottom:0;left:0;right:0;background:#000;border-top:2px solid #FFD700;display:flex;justify-content:space-around;padding:10px 0 14px;z-index:20}
+.bottom div{text-align:center;font-size:11px;color:#aaa;cursor:pointer;flex:1}
+.bottom div.active{color:#FFD700}
+.bottom span{font-size:22px;display:block}
+.ad{background:linear-gradient(135deg,#1a1a1a,#2a1a00);border:1px dashed #FFD700;border-radius:14px;padding:14px;text-align:center;margin:12px 14px}
+.badge{background:#FFD700;color:#000;padding:3px 8px;border-radius:20px;font-size:11px;font-weight:800}
 </style>
 </head>
 <body>
 
-<!-- 1. LOADING SCREEN -->
-<div id="loader" class="loader">
-  <div style="font-size:50px">🌉</div>
-  <h1 style="font-size:32px;margin:10px 0">Lingo<span style="color:#FFD700">Bridge</span></h1>
-  <p style="color:#aaa">Connecting Languages...</p>
-  <div class="spinner" style="margin-top:20px"></div>
-  <p id="loadText" style="color:#FFD700;margin-top:12px">Loading...</p>
+<div id="loader" style="position:fixed;inset:0;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:99">
+<div style="font-size:55px">🌉</div><h1 style="font-size:34px">Lingo<span style="color:#FFD700">Bridge</span> <span style="font-size:12px;background:#FFD700;color:#000;padding:3px 7px;border-radius:10px">PRO</span></h1><p style="color:#aaa;margin-top:6px">Mature • Fast • Premium</p><div style="width:60px;height:60px;border:4px solid #333;border-top:4px solid #FFD700;border-radius:50%;animation:spin 1s linear infinite;margin-top:20px"></div><style>@keyframes spin{to{transform:rotate(360deg)}}</style>
 </div>
 
-<!-- 2. LOGIN / SIGNUP SCREEN -->
-<div id="authScreen" class="hidden" style="padding:24px;max-width:420px;margin:0 auto;padding-top:50px">
-  <div style="text-align:center">
-    <div style="font-size:60px">🌉</div>
-    <h1 style="font-size:34px">Lingo<span class="gold">Bridge</span></h1>
-    <p style="color:#aaa;margin-top:8px">Learn, Translate & Connect in Any Language</p>
-  </div>
-  <div class="card" style="margin-top:24px">
-    <h3>Welcome Back 👋</h3>
-    <p style="color:#aaa;font-size:13px;margin-top:4px">Login to continue to your Dashboard</p>
-    <input id="emailInput" type="email" placeholder="Email address e.g. you@gmail.com">
-    <input id="passInput" type="password" placeholder="Password">
-    <button class="btn-gold" onclick="loginWithEmail()">LOGIN WITH EMAIL →</button>
-    <button class="btn-outline" onclick="loginWithGoogle()">G Continue with Google</button>
-    <button class="btn-outline" onclick="loginWithGoogle()" style="border-color:#fff;color:#fff">G Continue with Gmail</button>
-    <p style="text-align:center;color:#aaa;font-size:13px;margin-top:14px">No account? <b style="color:#FFD700;cursor:pointer" onclick="createAccount()">Create Account</b></p>
-  </div>
-  <p style="text-align:center;color:#555;font-size:12px;margin-top:10px">Gold & Black Edition • v1.0</p>
+<div id="auth" class="hidden" style="padding:30px 20px;max-width:420px;margin:0 auto;padding-top:50px;text-align:center">
+<div style="font-size:60px">🌉</div><h1 style="font-size:34px">Lingo<span class="gold">Bridge</span> PRO</h1><p style="color:#aaa">Welcome Bonus • Free Trial • 200 Stars</p>
+<div class="card" style="text-align:left"><h3>Welcome Back 👋</h3><input id="em" placeholder="Email e.g. you@gmail.com"><input type="password" placeholder="Password"><button class="btn" onclick="login()">LOGIN WITH EMAIL →</button><button class="btn2" style="margin-top:10px" onclick="login()">G Continue with Google / Gmail</button><p style="text-align:center;color:#aaa;font-size:13px;margin-top:12px">New? <b style="color:#FFD700;cursor:pointer" onclick="login()">Create Account - Get 200 Stars FREE</b></p></div>
 </div>
 
-<!-- 3. DASHBOARD -->
-<div id="dashboard" class="hidden">
-  <div class="topbar">
-    <div class="logo">Lingo<span>Bridge</span></div>
-    <div style="display:flex;gap:8px;align-items:center">
-      <span id="userName" style="font-size:13px;color:#FFD700">Hi, User</span>
-      <button onclick="logout()" style="background:#FFD700;border:none;padding:7px 12px;border-radius:20px;font-weight:700;cursor:pointer">Logout</button>
-    </div>
-  </div>
-  <div style="padding:18px;max-width:500px;margin:0 auto">
-    <h2 style="font-size:24px">Welcome back, <span class="gold" id="welcomeName">Friend</span> 👋</h2>
-    <p style="color:#aaa;margin:6px 0 16px">What do you want to do today?</p>
+<div id="app" class="hidden">
+<div class="top"><div class="logo">Lingo<span>Bridge</span> <span style="font-size:10px;background:#FFD700;color:#000;padding:2px 6px;border-radius:8px">PRO</span></div><div class="stars" onclick="show('stars')">⭐ <span id="starBal">200</span> Stars</div></div>
 
-    <div class="card" style="background:linear-gradient(135deg,#FFD700,#FF8C00);color:#000;border:none">
-      <b style="font-size:18px">🔥 Daily Streak: 5 Days</b><br>
-      <span style="font-size:13px">You are doing great! Keep it up.</span>
-      <div style="background:#0003;height:8px;border-radius:20px;margin-top:10px;overflow:hidden"><div style="width:70%;height:100%;background:#000;border-radius:20px"></div></div>
-    </div>
+<!-- HOME -->
+<div id="page-home">
+<div class="card" style="background:linear-gradient(135deg,#FFD700,#FF8C00);color:#000;border:none">
+<div style="display:flex;justify-content:space-between"><div><b>Welcome back, <span id="uName">mannyfunds8</span> 👋</b><br><span style="font-size:12px">Premium Member • Level 5</span></div><span class="badge" style="background:#000;color:#FFD700">PRO</span></div>
+<div style="background:#0003;padding:10px;border-radius:10px;margin-top:12px;display:flex;justify-content:space-between"><span>⭐ Stars Balance</span><b>200 Stars</b></div>
+<div style="background:#0003;padding:10px;border-radius:10px;margin-top:8px;display:flex;justify-content:space-between"><span>🎁 Welcome Bonus</span><b>+50 Stars Claimed</b></div>
+</div>
 
-    <div class="grid">
-      <div class="dash-btn" onclick="showPage('translatePage')"><span>🔄</span><b>Translator</b><p style="color:#aaa;font-size:11px">Translate Anything</p></div>
-      <div class="dash-btn" onclick="showPage('dictionaryPage')"><span>📖</span><b>Dictionary</b><p style="color:#aaa;font-size:11px">Words & Meaning</p></div>
-      <div class="dash-btn" onclick="showPage('phrasePage')"><span>💬</span><b>Phrasebook</b><p style="color:#aaa;font-size:11px">Common Phrases</p></div>
-      <div class="dash-btn" onclick="showPage('learnPage')"><span>🎓</span><b>Learn</b><p style="color:#aaa;font-size:11px">Lessons & Quiz</p></div>
-      <div class="dash-btn" onclick="showPage('chatPage')"><span>💬</span><b>Chat</b><p style="color:#aaa;font-size:11px">Practice with AI</p></div>
-      <div class="dash-btn" onclick="showPage('profilePage')"><span>👤</span><b>Profile</b><p style="color:#aaa;font-size:11px">My Account</p></div>
-    </div>
+<div class="card"><div style="display:flex;justify-content:space-between;align-items:center"><div><b class="gold">🔥 FREE TRIAL - 7 Days Premium</b><p style="color:#aaa;font-size:12px">Unlock all languages + Music + No Ads</p></div><button style="background:#FFD700;border:none;padding:8px 14px;border-radius:20px;font-weight:800;cursor:pointer" onclick="alert('Free Trial Activated! 7 Days Premium 🎉')">START FREE</button></div>
+<div style="background:#1a1a1a;height:7px;border-radius:20px;margin-top:10px;overflow:hidden"><div style="width:65%;height:100%;background:#FFD700"></div></div><p style="font-size:11px;color:#aaa;margin-top:6px">5 days left of trial</p></div>
 
-    <!-- TRANSLATOR PAGE -->
-    <div id="translatePage" class="card hidden">
-      <h3 class="gold">🔄 Translator</h3>
-      <label style="font-size:12px;color:#aaa">From</label>
-      <select id="fromLang"><option value="en">English</option><option value="ha">Hausa</option><option value="yo">Yoruba</option><option value="ig">Igbo</option><option value="fr">French</option><option value="es">Spanish</option></select>
-      <label style="font-size:12px;color:#aaa">To</label>
-      <select id="toLang"><option value="ha">Hausa</option><option value="yo">Yoruba</option><option value="ig">Igbo</option><option value="en">English</option><option value="fr">French</option></select>
-      <input id="transInput" placeholder="Type e.g. Hello, how are you?">
-      <button class="btn-gold" onclick="doTranslate()">TRANSLATE NOW</button>
-      <div id="transResult" style="background:#000;padding:14px;border-radius:10px;margin-top:12px;border:1px solid #FFD700;min-height:50px">Result go show here...</div>
-      <button class="btn-outline" onclick="showPage('home')">← Back to Dashboard</button>
-    </div>
+<div class="grid2" style="padding:0 14px">
+<div class="mini" onclick="show('translate')"><span style="font-size:26px">🔄</span><br><b>Translator</b><p style="color:#aaa;font-size:11px">120+ Languages</p></div>
+<div class="mini" onclick="show('music')"><span style="font-size:26px">🎵</span><br><b>Music</b><p style="color:#aaa;font-size:11px">Learn with Songs</p></div>
+<div class="mini" onclick="show('stars')"><span style="font-size:26px">⭐</span><br><b>Stars</b><p style="color:#aaa;font-size:11px">200 Stars</p></div>
+<div class="mini" onclick="show('transact')"><span style="font-size:26px">💳</span><br><b>Transactions</b><p style="color:#aaa;font-size:11px">History & Wallet</p></div>
+</div>
 
-    <!-- DICTIONARY -->
-    <div id="dictionaryPage" class="card hidden">
-      <h3 class="gold">📖 Dictionary</h3>
-      <input id="dictInput" placeholder="Search word e.g. Love, Water...">
-      <button class="btn-gold" onclick="doDict()">SEARCH WORD</button>
-      <div id="dictResult" style="margin-top:12px;color:#ddd">Type word and search...</div>
-      <button class="btn-outline" onclick="showPage('home')">← Back</button>
-    </div>
+<div class="ad"><p style="font-size:11px;color:#FFD700;letter-spacing:1px">ADVERTISEMENT • SPONSORED</p><b style="font-size:16px">Learn Faster with LingoBridge PRO 🚀</b><p style="color:#aaa;font-size:12px;margin:6px 0">Get Unlimited Translation + Music Lessons. Upgrade Now!</p><button class="btn" style="width:auto;padding:9px 18px" onclick="show('stars')">UPGRADE NOW →</button></div>
 
-    <!-- PHRASEBOOK -->
-    <div id="phrasePage" class="card hidden">
-      <h3 class="gold">💬 Phrasebook</h3>
-      <div style="background:#1a1a1a;padding:12px;border-radius:10px;margin:8px 0"><b>Hello - Sannu (Hausa)</b><br><span style="color:#aaa;font-size:13px">Hello - E nle (Yoruba) • Ndewo (Igbo)</span></div>
-      <div style="background:#1a1a1a;padding:12px;border-radius:10px;margin:8px 0"><b>Thank you - Na gode</b><br><span style="color:#aaa;font-size:13px">E se - Daalu</span></div>
-      <div style="background:#1a1a1a;padding:12px;border-radius:10px;margin:8px 0"><b>How are you? - Yaya kake?</b><br><span style="color:#aaa;font-size:13px">Bawo ni? - Kedu?</span></div>
-      <div style="background:#1a1a1a;padding:12px;border-radius:10px;margin:8px 0"><b>I love you - Ina son ka</b><br><span style="color:#aaa;font-size:13px">Mo nife e - A hụrụ m gị n'anya</span></div>
-      <button class="btn-outline" onclick="showPage('home')">← Back</button>
-    </div>
+<div class="card"><b>💰 For Investors</b><p style="color:#aaa;font-size:13px;margin:6px 0">LingoBridge is growing fast - 50K+ users in Nigeria & Africa. Join us.</p><div style="display:flex;gap:8px"><button class="btn2" onclick="alert('Investor Deck sent to your email!')">View Pitch Deck</button><button class="btn2" onclick="alert('Thanks! Investor team go contact you.')">Invest Now</button></div></div>
 
-    <!-- LEARN -->
-    <div id="learnPage" class="card hidden">
-      <h3 class="gold">🎓 Learn</h3>
-      <p style="color:#aaa">Lesson 1: Greetings</p>
-      <div style="background:#1a1a1a;padding:14px;border-radius:10px;margin:10px 0"><b>What is "Hello" in Hausa?</b><br><button class="btn-outline" onclick="alert('Correct! Sannu 🎉')">Sannu</button><button class="btn-outline" onclick="alert('Try again')">Barka</button></div>
-      <button class="btn-outline" onclick="showPage('home')">← Back</button>
-    </div>
+<div class="card"><b>📖 Phrase of the Day</b><p style="margin-top:8px">Hello - <b class="gold">Sannu</b> (Hausa) • <b class="gold">E nle</b> (Yoruba) • <b class="gold">Ndewo</b> (Igbo)</p></div>
+</div>
 
-    <!-- CHAT -->
-    <div id="chatPage" class="card hidden">
-      <h3 class="gold">💬 Practice Chat</h3>
-      <div id="chatBox" style="background:#000;padding:12px;border-radius:10px;min-height:120px"><p><b style="color:#FFD700">Lingo AI:</b> Hello! Sannu! How can I help you learn today?</p></div>
-      <input id="chatInput" placeholder="Type message...">
-      <button class="btn-gold" onclick="sendChat()">SEND</button>
-      <button class="btn-outline" onclick="showPage('home')">← Back</button>
-    </div>
+<!-- TRANSLATE -->
+<div id="page-translate" class="hidden"><div class="card"><h3 class="gold">🔄 Translator</h3><select id="from"><option value="en">English</option><option value="ha">Hausa</option><option value="yo">Yoruba</option><option value="ig">Igbo</option><option value="fr">French</option><option value="es">Spanish</option></select><select id="to"><option value="ha">Hausa</option><option value="yo">Yoruba</option><option value="ig">Igbo</option><option value="en">English</option><option value="fr">French</option></select><input id="tin" placeholder="Type e.g. Hello, how are you?"><button class="btn" onclick="doT()">TRANSLATE</button><div id="tout" style="background:#000;padding:12px;border-radius:10px;margin-top:10px;border:1px solid #FFD700">Result go show here...</div></div></div>
 
-    <!-- PROFILE -->
-    <div id="profilePage" class="card hidden">
-      <h3 class="gold">👤 My Profile</h3>
-      <p><b>Name:</b> <span id="profileName">User</span></p>
-      <p><b>Email:</b> <span id="profileEmail">user@gmail.com</span></p>
-      <p><b>Level:</b> Beginner • <b>Points:</b> 250 XP</p>
-      <button class="btn-gold" onclick="logout()">LOGOUT</button>
-      <button class="btn-outline" onclick="showPage('home')">← Back</button>
-    </div>
+<!-- MUSIC -->
+<div id="page-music" class="hidden"><div class="card"><h3 class="gold">🎵 Music - Learn with Songs</h3><div style="background:#1e1e1e;padding:12px;border-radius:10px;margin:8px 0;display:flex;justify-content:space-between"><div><b>🎶 Sannu Song - Hausa Hits</b><p style="color:#aaa;font-size:12px">Learn Hausa with music • 3:24</p></div><button style="background:#FFD700;border:none;width:40px;height:40px;border-radius:50%;font-size:16px;cursor:pointer" onclick="alert('Playing... 🎵')">▶</button></div><div style="background:#1e1e1e;padding:12px;border-radius:10px;margin:8px 0;display:flex;justify-content:space-between"><div><b>🎶 E nle - Yoruba Groove</b><p style="color:#aaa;font-size:12px">Yoruba • 2:58</p></div><button style="background:#FFD700;border:none;width:40px;height:40px;border-radius:50%;font-size:16px;cursor:pointer" onclick="alert('Playing... 🎵')">▶</button></div><div style="background:#1e1e1e;padding:12px;border-radius:10px;margin:8px 0;display:flex;justify-content:space-between"><div><b>🎶 Ndewo - Igbo Vibes</b><p style="color:#aaa;font-size:12px">Igbo • 3:10</p></div><button style="background:#FFD700;border:none;width:40px;height:40px;border-radius:50%;font-size:16px;cursor:pointer" onclick="alert('Playing... 🎵')">▶</button></div></div></div>
 
-  </div>
+<!-- STARS -->
+<div id="page-stars" class="hidden"><div class="card" style="text-align:center"><div style="font-size:50px">⭐</div><h2>200 Stars</h2><p style="color:#aaa">Your Balance</p><button class="btn" style="margin-top:12px" onclick="alert('Buy Stars - Coming Soon')">BUY MORE STARS</button><button class="btn2" style="margin-top:8px" onclick="alert('Welcome Bonus +50 Stars Claimed!')">CLAIM WELCOME BONUS +50</button></div><div class="card"><b>How to Earn Stars</b><p style="color:#aaa;font-size:13px;margin-top:6px">• Daily Login +10 ⭐<br>• Complete Lesson +20 ⭐<br>• Invite Friend +50 ⭐<br>• Watch Ad +5 ⭐</p></div></div>
+
+<!-- TRANSACTIONS -->
+<div id="page-transact" class="hidden"><div class="card"><h3 class="gold">💳 Transactions</h3><div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #222"><span>Welcome Bonus</span><b style="color:#00ff88">+50 ⭐</b></div><div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #222"><span>Free Trial - Premium</span><b>₦0</b></div><div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #222"><span>Daily Login Reward</span><b style="color:#00ff88">+10 ⭐</b></div><div style="display:flex;justify-content:space-between;padding:10px 0"><span>Translation Used</span><b style="color:#ff5555">-2 ⭐</b></div><p style="color:#aaa;font-size:12px;margin-top:10px">Total Balance: <b style="color:#FFD700">200 Stars</b></p></div></div>
+
+<!-- PROFILE -->
+<div id="page-profile" class="hidden"><div class="card" style="text-align:center"><div style="font-size:50px">👤</div><h3 id="pName">mannyfunds8</h3><p style="color:#aaa">Premium Member • PRO</p><p style="margin-top:8px">⭐ 200 Stars • 🔥 5 Days Streak</p><button class="btn" style="margin-top:12px" onclick="localStorage.removeItem('lb');location.reload()">LOGOUT</button></div></div>
+
+</div>
+
+<div class="bottom">
+<div onclick="show('home')" id="nav-home" class="active"><span>🏠</span>Home</div>
+<div onclick="show('music')" id="nav-music"><span>🎵</span>Music</div>
+<div onclick="show('translate')" id="nav-translate"><span>🔄</span>Translate</div>
+<div onclick="show('stars')" id="nav-stars"><span>⭐</span>Stars</div>
+<div onclick="show('profile')" id="nav-profile"><span>👤</span>Profile</div>
 </div>
 
 <script>
-let texts=["Loading...","Connecting Languages...","Preparing Dashboard...","Almost Ready..."];
-let i=0;
-let loadInt=setInterval(()=>{document.getElementById('loadText').innerText=texts[i%texts.length];i++},700);
-setTimeout(()=>{
-  clearInterval(loadInt);
-  document.getElementById('loader').classList.add('hidden');
-  let saved=localStorage.getItem('lingoUser');
-  if(saved){enterDashboard(JSON.parse(saved));}
-  else{document.getElementById('authScreen').classList.remove('hidden');}
-},3000);
-
-function createAccount(){
-  let email=document.getElementById('emailInput').value||prompt("Enter your email:");
-  if(!email) return alert("Enter email first");
-  let user={name:email.split('@')[0],email:email};
-  localStorage.setItem('lingoUser',JSON.stringify(user));
-  alert("Account Created! Welcome "+user.name+" 🎉");
-  enterDashboard(user);
-}
-function loginWithEmail(){
-  let email=document.getElementById('emailInput').value;
-  if(!email) return alert("Please enter your email");
-  let user={name:email.split('@')[0],email:email};
-  localStorage.setItem('lingoUser',JSON.stringify(user));
-  enterDashboard(user);
-}
-function loginWithGoogle(){
-  let email=prompt("Enter your Gmail to continue with Google:","you@gmail.com");
-  if(!email) return;
-  let user={name:email.split('@')[0],email:email};
-  localStorage.setItem('lingoUser',JSON.stringify(user));
-  enterDashboard(user);
-}
-function enterDashboard(user){
-  document.getElementById('authScreen').classList.add('hidden');
-  document.getElementById('dashboard').classList.remove('hidden');
-  document.getElementById('userName').innerText="Hi, "+user.name;
-  document.getElementById('welcomeName').innerText=user.name;
-  document.getElementById('profileName').innerText=user.name;
-  document.getElementById('profileEmail').innerText=user.email;
-  window.scrollTo(0,0);
-}
-function logout(){
-  localStorage.removeItem('lingoUser');
-  location.reload();
-}
-function showPage(id){
-  ['translatePage','dictionaryPage','phrasePage','learnPage','chatPage','profilePage'].forEach(x=>document.getElementById(x).classList.add('hidden'));
-  if(id!=='home') document.getElementById(id).classList.remove('hidden');
-  window.scrollTo(0,300);
-}
-function doTranslate(){
-  let t=document.getElementById('transInput').value.toLowerCase();
-  let to=document.getElementById('toLang').value;
-  let map={hello:{ha:"Sannu",yo:"E nle",ig:"Ndewo",en:"Hello",fr:"Bonjour"}, "how are you":{ha:"Yaya kake?",yo:"Bawo ni?",ig:"Kedu?"}, "thank you":{ha:"Na gode",yo:"E se",ig:"Daalu"}, "i love you":{ha:"Ina son ka",yo:"Mo nife e",ig:"A hụrụ m gị n'anya"}};
-  let found="...";
-  for(let k in map){ if(t.includes(k)) found=map[k][to]||map[k]['en']; }
-  if(found==="...") found="Translation: ["+document.getElementById('transInput').value+"] in "+to+" (Demo - full version coming)";
-  document.getElementById('transResult').innerHTML="<b style='color:#FFD700'>Result:</b><br>"+found;
-}
-function doDict(){
-  let w=document.getElementById('dictInput').value.toLowerCase();
-  let d={love:"Soyu - Kauna (Hausa) • Ife (Yoruba) • Ihunanya (Igbo)",water:"Ruwa • Omi • Mmiri",hello:"Sannu • E nle • Ndewo",thank:"Na gode • E se • Daalu"};
-  document.getElementById('dictResult').innerHTML=d[w]||"Meaning of <b>"+w+"</b>: Demo dictionary - e dey work!";
-}
-function sendChat(){
-  let v=document.getElementById('chatInput').value;
-  if(!v) return;
-  document.getElementById('chatBox').innerHTML+="<p><b>You:</b> "+v+"</p><p><b style='color:#FFD700'>Lingo AI:</b> Nice! In Hausa, that is 'Sannu'. Keep practicing! 🌉</p>";
-  document.getElementById('chatInput').value="";
-}
+setTimeout(()=>{document.getElementById('loader').style.display='none';let s=localStorage.getItem('lb');if(s){enter();}else{document.getElementById('auth').classList.remove('hidden');}},2500);
+function login(){let e=document.getElementById('em').value||'mannyfunds8@gmail.com';localStorage.setItem('lb',e);enter();}
+function enter(){document.getElementById('auth').classList.add('hidden');document.getElementById('app').classList.remove('hidden');let e=localStorage.getItem('lb');let n=e.split('@')[0];document.getElementById('uName').innerText=n;document.getElementById('pName').innerText=n;show('home');}
+function show(p){['home','translate','music','stars','transact','profile'].forEach(x=>{let el=document.getElementById('page-'+x);if(el)el.classList.add('hidden');});let map={home:'home',translate:'translate',music:'music',stars:'stars',transact:'transact',profile:'profile'};document.getElementById('page-'+map[p]).classList.remove('hidden');document.querySelectorAll('.bottom div').forEach(d=>d.classList.remove('active'));let nav=document.getElementById('nav-'+p);if(nav)nav.classList.add('active');window.scrollTo(0,0);}
+function doT(){let t=document.getElementById('tin').value.toLowerCase();let to=document.getElementById('to').value;let m={hello:{ha:'Sannu',yo:'E nle',ig:'Ndewo',en:'Hello',fr:'Bonjour'},'how are you':{ha:'Yaya kake?',yo:'Bawo ni?',ig:'Kedu?'},'thank you':{ha:'Na gode',yo:'E se',ig:'Daalu'},'i love you':{ha:'Ina son ka',yo:'Mo nife e',ig:'A hurum gi nanya'}};let f='...';for(let k in m){if(t.includes(k))f=m[k][to]||m[k].en}document.getElementById('tout').innerHTML='<b style="color:#FFD700">Result:</b><br>'+(f==='...'?'Translation: '+document.getElementById('tin').value+' in '+to:f);}
 </script>
 </body>
-</html>
+                                                                                                          </html>
