@@ -1,101 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LingoBridge - Pro</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif}
-body{background:#0a0a0a;color:#fff;padding-bottom:85px}
-.top{background:#000;border-bottom:2px solid #FFD700;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10}
-.logo{font-weight:900;font-size:20px}.logo span{color:#FFD700}
-.stars{background:#1a1a1a;border:1px solid #FFD700;padding:6px 12px;border-radius:20px;font-weight:800;color:#FFD700;font-size:13px}
-.card{background:#141414;border:1px solid #222;border-radius:16px;padding:16px;margin:12px 14px}
-.gold{color:#FFD700}
-.btn{background:linear-gradient(135deg,#FFD700,#FF8C00);color:#000;border:none;padding:13px;border-radius:12px;font-weight:800;width:100%;cursor:pointer}
-.btn2{background:#1a1a1a;color:#FFD700;border:1px solid #FFD700;padding:11px;border-radius:12px;font-weight:700;width:100%;cursor:pointer}
-input,select{width:100%;padding:13px;border-radius:10px;border:1px solid #333;background:#1e1e1e;color:#fff;margin-top:8px}
-.hidden{display:none!important}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.mini{background:#1e1e1e;border:1px solid #333;border-radius:14px;padding:16px 8px;text-align:center;cursor:pointer}
-.mini b{color:#FFD700;font-size:13px}
-.bottom{position:fixed;bottom:0;left:0;right:0;background:#000;border-top:2px solid #FFD700;display:flex;justify-content:space-around;padding:10px 0 14px;z-index:20}
-.bottom div{text-align:center;font-size:11px;color:#aaa;cursor:pointer;flex:1}
-.bottom div.active{color:#FFD700}
-.bottom span{font-size:22px;display:block}
-.ad{background:linear-gradient(135deg,#1a1a1a,#2a1a00);border:1px dashed #FFD700;border-radius:14px;padding:14px;text-align:center;margin:12px 14px}
-.badge{background:#FFD700;color:#000;padding:3px 8px;border-radius:20px;font-size:11px;font-weight:800}
-</style>
-</head>
-<body>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>LingoBridge PRO MAX</title>
+<style>*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Arial}body{background:#0a0a0a;color:#fff;padding-bottom:90px}.top{background:#000;border-bottom:2px solid #FFD700;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10}.stars{background:#1a1a1a;border:1px solid #FFD700;padding:6px 12px;border-radius:20px;font-weight:800;color:#FFD700;font-size:13px}.card{background:#141414;border:1px solid #222;border-radius:16px;padding:16px;margin:12px 14px}.gold{color:#FFD700}.btn{background:linear-gradient(135deg,#FFD700,#FF8C00);color:#000;border:none;padding:13px;border-radius:12px;font-weight:800;width:100%;cursor:pointer}.btn2{background:#1a1a1a;color:#FFD700;border:1px solid #FFD700;padding:11px;border-radius:12px;font-weight:700;width:100%;cursor:pointer}input,select{width:100%;padding:13px;border-radius:10px;border:1px solid #333;background:#1e1e1e;color:#fff;margin-top:8px}.hidden{display:none!important}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.mini{background:#1e1e1e;border:1px solid #333;border-radius:14px;padding:16px 8px;text-align:center;cursor:pointer}.bottom{position:fixed;bottom:0;left:0;right:0;background:#000;border-top:2px solid #FFD700;display:flex;justify-content:space-around;padding:10px 0 14px;z-index:20}.bottom div{text-align:center;font-size:11px;color:#aaa;cursor:pointer;flex:1}.bottom div.active{color:#FFD700}.bottom span{font-size:22px;display:block}.langItem{background:#1e1e1e;padding:11px;border-radius:10px;margin-top:7px;display:flex;justify-content:space-between;cursor:pointer;border:1px solid #333}.langItem:hover{border-color:#FFD700}.appBtn{flex:1;padding:10px;border-radius:10px;font-weight:800;cursor:pointer;border:none}
+</style></head><body>
 
-<div id="loader" style="position:fixed;inset:0;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:99">
-<div style="font-size:55px">🌉</div><h1 style="font-size:34px">Lingo<span style="color:#FFD700">Bridge</span> <span style="font-size:12px;background:#FFD700;color:#000;padding:3px 7px;border-radius:10px">PRO</span></h1><p style="color:#aaa;margin-top:6px">Mature • Fast • Premium</p><div style="width:60px;height:60px;border:4px solid #333;border-top:4px solid #FFD700;border-radius:50%;animation:spin 1s linear infinite;margin-top:20px"></div><style>@keyframes spin{to{transform:rotate(360deg)}}</style>
-</div>
+<div id="loader" style="position:fixed;inset:0;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:99"><div style="font-size:55px">🌉</div><h1 style="font-size:34px">Lingo<span style="color:#FFD700">Bridge</span> PRO MAX</h1><p style="color:#aaa">Whole World • Music • Premium</p><div style="width:60px;height:60px;border:4px solid #333;border-top:4px solid #FFD700;border-radius:50%;animation:spin 1s linear infinite;margin-top:20px"></div><style>@keyframes spin{to{transform:rotate(360deg)}}</style></div>
 
-<div id="auth" class="hidden" style="padding:30px 20px;max-width:420px;margin:0 auto;padding-top:50px;text-align:center">
-<div style="font-size:60px">🌉</div><h1 style="font-size:34px">Lingo<span class="gold">Bridge</span> PRO</h1><p style="color:#aaa">Welcome Bonus • Free Trial • 200 Stars</p>
-<div class="card" style="text-align:left"><h3>Welcome Back 👋</h3><input id="em" placeholder="Email e.g. you@gmail.com"><input type="password" placeholder="Password"><button class="btn" onclick="login()">LOGIN WITH EMAIL →</button><button class="btn2" style="margin-top:10px" onclick="login()">G Continue with Google / Gmail</button><p style="text-align:center;color:#aaa;font-size:13px;margin-top:12px">New? <b style="color:#FFD700;cursor:pointer" onclick="login()">Create Account - Get 200 Stars FREE</b></p></div>
-</div>
+<div id="auth" class="hidden" style="padding:40px 20px;max-width:420px;margin:auto;text-align:center"><div style="font-size:60px">🌉</div><h1 style="font-size:32px">Lingo<span class="gold">Bridge</span> PRO MAX</h1><p style="color:#aaa">200 Stars Welcome Bonus • 7 Days Free Trial</p><div class="card" style="text-align:left"><h3>Welcome Back 👋</h3><input id="em" placeholder="Email"><input type="password" placeholder="Password"><button class="btn" onclick="login()">LOGIN →</button><button class="btn2" style="margin-top:10px" onclick="login()">G Continue with Google</button><p style="text-align:center;color:#aaa;font-size:13px;margin-top:10px">New? <b style="color:#FFD700" onclick="login()">Create Account - Get 200 Stars</b></p></div></div>
 
 <div id="app" class="hidden">
-<div class="top"><div class="logo">Lingo<span>Bridge</span> <span style="font-size:10px;background:#FFD700;color:#000;padding:2px 6px;border-radius:8px">PRO</span></div><div class="stars" onclick="show('stars')">⭐ <span id="starBal">200</span> Stars</div></div>
+<div class="top"><div style="font-weight:900;font-size:19px">Lingo<span style="color:#FFD700">Bridge</span> <span style="font-size:10px;background:#FFD700;color:#000;padding:2px 6px;border-radius:8px">PRO MAX</span></div><div class="stars" onclick="show('stars')">⭐ 200 Stars</div></div>
 
-<!-- HOME -->
 <div id="page-home">
-<div class="card" style="background:linear-gradient(135deg,#FFD700,#FF8C00);color:#000;border:none">
-<div style="display:flex;justify-content:space-between"><div><b>Welcome back, <span id="uName">mannyfunds8</span> 👋</b><br><span style="font-size:12px">Premium Member • Level 5</span></div><span class="badge" style="background:#000;color:#FFD700">PRO</span></div>
-<div style="background:#0003;padding:10px;border-radius:10px;margin-top:12px;display:flex;justify-content:space-between"><span>⭐ Stars Balance</span><b>200 Stars</b></div>
-<div style="background:#0003;padding:10px;border-radius:10px;margin-top:8px;display:flex;justify-content:space-between"><span>🎁 Welcome Bonus</span><b>+50 Stars Claimed</b></div>
+<div class="card" style="background:linear-gradient(135deg,#FFD700,#FF8C00);color:#000;border:none"><b>Welcome back, <span id="uName">mannyfunds8</span> 👋</b><br><span style="font-size:12px">Premium • Level 5 • Global Member</span><div style="background:#0003;padding:10px;border-radius:10px;margin-top:10px;display:flex;justify-content:space-between"><span>⭐ Stars</span><b>200</b></div><div style="background:#0003;padding:10px;border-radius:10px;margin-top:8px;display:flex;justify-content:space-between"><span>🎁 Welcome Bonus</span><b>+50 Claimed</b></div></div>
+<div class="card"><b class="gold">🔥 FREE TRIAL - 7 Days Premium</b><p style="color:#aaa;font-size:12px">Unlock Whole World Translation + Music</p><button class="btn" style="margin-top:10px" onclick="alert('Free Trial Activated!')">START FREE TRIAL</button></div>
+<div class="grid2" style="padding:0 14px"><div class="mini" onclick="show('translate')"><span style="font-size:26px">🌍</span><br><b>Translator</b><p style="color:#aaa;font-size:11px">Search Any Country</p></div><div class="mini" onclick="show('music')"><span style="font-size:26px">🎵</span><br><b>Music</b><p style="color:#aaa;font-size:11px">Spotify • Boomplay</p></div><div class="mini" onclick="show('stars')"><span style="font-size:26px">⭐</span><br><b>Stars</b><p style="color:#aaa;font-size:11px">200 Stars</p></div><div class="mini" onclick="show('transact')"><span style="font-size:26px">💳</span><br><b>Transactions</b><p style="color:#aaa;font-size:11px">Wallet</p></div></div>
+<div class="card"><b>💎 INVESTOR ACCESS - BY INVITATION ONLY</b><p style="color:#aaa;font-size:13px;margin:8px 0">LingoBridge is <b style="color:#fff">OVERSUBSCRIBED</b>. We are not looking for investors. Investors are applying to us.</p><div style="background:#1a1a1a;padding:10px;border-radius:10px;display:flex;justify-content:space-between"><span>Slots Left for 2026 Round</span><b class="gold">Only 3 Slots Left</b></div><div style="background:#1a1a1a;padding:10px;border-radius:10px;margin-top:8px;display:flex;justify-content:space-between"><span>Applications Received</span><b>1,247 Applications</b></div><button class="btn" style="margin-top:12px" onclick="alert('Application Submitted! Our team go review you. If you qualify, we go contact you.')">APPLY TO INVEST → (Waitlist)</button><p style="color:#aaa;font-size:11px;text-align:center;margin-top:8px">Strict Selection • Minimum $10,000 • We Choose Our Partners</p></div>
+<div class="card" style="text-align:center"><p style="font-size:11px;color:#FFD700">ADVERTISEMENT</p><b>Advertise Here - 50K+ Users Daily</b><p style="color:#aaa;font-size:12px">Brands dey beg to advertise here</p></div>
 </div>
 
-<div class="card"><div style="display:flex;justify-content:space-between;align-items:center"><div><b class="gold">🔥 FREE TRIAL - 7 Days Premium</b><p style="color:#aaa;font-size:12px">Unlock all languages + Music + No Ads</p></div><button style="background:#FFD700;border:none;padding:8px 14px;border-radius:20px;font-weight:800;cursor:pointer" onclick="alert('Free Trial Activated! 7 Days Premium 🎉')">START FREE</button></div>
-<div style="background:#1a1a1a;height:7px;border-radius:20px;margin-top:10px;overflow:hidden"><div style="width:65%;height:100%;background:#FFD700"></div></div><p style="font-size:11px;color:#aaa;margin-top:6px">5 days left of trial</p></div>
+<div id="page-translate" class="hidden"><div class="card"><h3 class="gold">🌍 World Translator - Search Any Country</h3><p style="color:#aaa;font-size:13px">Type country name - e.g. Nigeria, France, Brazil, Japan, India...</p><input id="searchCountry" placeholder="🔍 Search Country... e.g. Nigeria, France, Japan" oninput="filterCountry()"><div id="countryList"></div><div style="margin-top:14px"><label style="font-size:12px;color:#aaa">From:</label><select id="fromLang"><option>English</option></select><label style="font-size:12px;color:#aaa">To Language:</label><select id="toLang"><option>Hausa - Nigeria</option></select><input id="tin" placeholder="Type word e.g. Hello"><button class="btn" onclick="doT()">TRANSLATE →</button><div id="tout" style="background:#000;padding:12px;border-radius:10px;margin-top:10px;border:1px solid #FFD700">Result go show here...</div></div></div></div>
 
-<div class="grid2" style="padding:0 14px">
-<div class="mini" onclick="show('translate')"><span style="font-size:26px">🔄</span><br><b>Translator</b><p style="color:#aaa;font-size:11px">120+ Languages</p></div>
-<div class="mini" onclick="show('music')"><span style="font-size:26px">🎵</span><br><b>Music</b><p style="color:#aaa;font-size:11px">Learn with Songs</p></div>
-<div class="mini" onclick="show('stars')"><span style="font-size:26px">⭐</span><br><b>Stars</b><p style="color:#aaa;font-size:11px">200 Stars</p></div>
-<div class="mini" onclick="show('transact')"><span style="font-size:26px">💳</span><br><b>Transactions</b><p style="color:#aaa;font-size:11px">History & Wallet</p></div>
+<div id="page-music" class="hidden"><div class="card"><h3 class="gold">🎵 Music - Search Any Song & Translate It</h3><p style="color:#aaa;font-size:13px">Connected to Spotify • Boomplay • Audiomack</p><input id="songSearch" placeholder="🔍 Search any song... e.g. Asake, Burna Boy, Davido" oninput="filterSong()"><div style="display:flex;gap:8px;margin-top:10px"><button class="appBtn" style="background:#1DB954;color:#fff" onclick="alert('Opening Spotify...')">Spotify ▶</button><button class="appBtn" style="background:#FFD700;color:#000" onclick="alert('Opening Boomplay...')">Boomplay ▶</button><button class="appBtn" style="background:#FF6B00;color:#fff" onclick="alert('Opening Audiomack...')">Audiomack ▶</button></div><div id="songList"></div><div id="songTrans" style="background:#000;padding:12px;border-radius:10px;margin-top:12px;border:1px solid #FFD700">Pick a song to see its translation...</div></div></div>
+
+<div id="page-stars" class="hidden"><div class="card" style="text-align:center"><div style="font-size:50px">⭐</div><h2>200 Stars</h2><button class="btn" style="margin-top:12px" onclick="alert('Buy Stars')">BUY STARS</button><button class="btn2" style="margin-top:8px" onclick="alert('Welcome Bonus +50 Claimed!')">CLAIM +50 BONUS</button></div></div>
+<div id="page-transact" class="hidden"><div class="card"><h3 class="gold">💳 Transactions</h3><p>Welcome Bonus <b style="float:right;color:#00ff88">+50 ⭐</b></p><p style="margin-top:10px">Daily Login <b style="float:right;color:#00ff88">+10 ⭐</b></p><p style="margin-top:10px">Translation <b style="float:right;color:#ff5555">-2 ⭐</b></p></div></div>
+<div id="page-profile" class="hidden"><div class="card" style="text-align:center"><div style="font-size:50px">👤</div><h3 id="pName">mannyfunds8</h3><p style="color:#aaa">PRO MAX Member</p><button class="btn" style="margin-top:12px" onclick="localStorage.removeItem('lb');location.reload()">LOGOUT</button></div></div>
 </div>
 
-<div class="ad"><p style="font-size:11px;color:#FFD700;letter-spacing:1px">ADVERTISEMENT • SPONSORED</p><b style="font-size:16px">Learn Faster with LingoBridge PRO 🚀</b><p style="color:#aaa;font-size:12px;margin:6px 0">Get Unlimited Translation + Music Lessons. Upgrade Now!</p><button class="btn" style="width:auto;padding:9px 18px" onclick="show('stars')">UPGRADE NOW →</button></div>
-
-<div class="card"><b>💰 For Investors</b><p style="color:#aaa;font-size:13px;margin:6px 0">LingoBridge is growing fast - 50K+ users in Nigeria & Africa. Join us.</p><div style="display:flex;gap:8px"><button class="btn2" onclick="alert('Investor Deck sent to your email!')">View Pitch Deck</button><button class="btn2" onclick="alert('Thanks! Investor team go contact you.')">Invest Now</button></div></div>
-
-<div class="card"><b>📖 Phrase of the Day</b><p style="margin-top:8px">Hello - <b class="gold">Sannu</b> (Hausa) • <b class="gold">E nle</b> (Yoruba) • <b class="gold">Ndewo</b> (Igbo)</p></div>
-</div>
-
-<!-- TRANSLATE -->
-<div id="page-translate" class="hidden"><div class="card"><h3 class="gold">🔄 Translator</h3><select id="from"><option value="en">English</option><option value="ha">Hausa</option><option value="yo">Yoruba</option><option value="ig">Igbo</option><option value="fr">French</option><option value="es">Spanish</option></select><select id="to"><option value="ha">Hausa</option><option value="yo">Yoruba</option><option value="ig">Igbo</option><option value="en">English</option><option value="fr">French</option></select><input id="tin" placeholder="Type e.g. Hello, how are you?"><button class="btn" onclick="doT()">TRANSLATE</button><div id="tout" style="background:#000;padding:12px;border-radius:10px;margin-top:10px;border:1px solid #FFD700">Result go show here...</div></div></div>
-
-<!-- MUSIC -->
-<div id="page-music" class="hidden"><div class="card"><h3 class="gold">🎵 Music - Learn with Songs</h3><div style="background:#1e1e1e;padding:12px;border-radius:10px;margin:8px 0;display:flex;justify-content:space-between"><div><b>🎶 Sannu Song - Hausa Hits</b><p style="color:#aaa;font-size:12px">Learn Hausa with music • 3:24</p></div><button style="background:#FFD700;border:none;width:40px;height:40px;border-radius:50%;font-size:16px;cursor:pointer" onclick="alert('Playing... 🎵')">▶</button></div><div style="background:#1e1e1e;padding:12px;border-radius:10px;margin:8px 0;display:flex;justify-content:space-between"><div><b>🎶 E nle - Yoruba Groove</b><p style="color:#aaa;font-size:12px">Yoruba • 2:58</p></div><button style="background:#FFD700;border:none;width:40px;height:40px;border-radius:50%;font-size:16px;cursor:pointer" onclick="alert('Playing... 🎵')">▶</button></div><div style="background:#1e1e1e;padding:12px;border-radius:10px;margin:8px 0;display:flex;justify-content:space-between"><div><b>🎶 Ndewo - Igbo Vibes</b><p style="color:#aaa;font-size:12px">Igbo • 3:10</p></div><button style="background:#FFD700;border:none;width:40px;height:40px;border-radius:50%;font-size:16px;cursor:pointer" onclick="alert('Playing... 🎵')">▶</button></div></div></div>
-
-<!-- STARS -->
-<div id="page-stars" class="hidden"><div class="card" style="text-align:center"><div style="font-size:50px">⭐</div><h2>200 Stars</h2><p style="color:#aaa">Your Balance</p><button class="btn" style="margin-top:12px" onclick="alert('Buy Stars - Coming Soon')">BUY MORE STARS</button><button class="btn2" style="margin-top:8px" onclick="alert('Welcome Bonus +50 Stars Claimed!')">CLAIM WELCOME BONUS +50</button></div><div class="card"><b>How to Earn Stars</b><p style="color:#aaa;font-size:13px;margin-top:6px">• Daily Login +10 ⭐<br>• Complete Lesson +20 ⭐<br>• Invite Friend +50 ⭐<br>• Watch Ad +5 ⭐</p></div></div>
-
-<!-- TRANSACTIONS -->
-<div id="page-transact" class="hidden"><div class="card"><h3 class="gold">💳 Transactions</h3><div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #222"><span>Welcome Bonus</span><b style="color:#00ff88">+50 ⭐</b></div><div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #222"><span>Free Trial - Premium</span><b>₦0</b></div><div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #222"><span>Daily Login Reward</span><b style="color:#00ff88">+10 ⭐</b></div><div style="display:flex;justify-content:space-between;padding:10px 0"><span>Translation Used</span><b style="color:#ff5555">-2 ⭐</b></div><p style="color:#aaa;font-size:12px;margin-top:10px">Total Balance: <b style="color:#FFD700">200 Stars</b></p></div></div>
-
-<!-- PROFILE -->
-<div id="page-profile" class="hidden"><div class="card" style="text-align:center"><div style="font-size:50px">👤</div><h3 id="pName">mannyfunds8</h3><p style="color:#aaa">Premium Member • PRO</p><p style="margin-top:8px">⭐ 200 Stars • 🔥 5 Days Streak</p><button class="btn" style="margin-top:12px" onclick="localStorage.removeItem('lb');location.reload()">LOGOUT</button></div></div>
-
-</div>
-
-<div class="bottom">
-<div onclick="show('home')" id="nav-home" class="active"><span>🏠</span>Home</div>
-<div onclick="show('music')" id="nav-music"><span>🎵</span>Music</div>
-<div onclick="show('translate')" id="nav-translate"><span>🔄</span>Translate</div>
-<div onclick="show('stars')" id="nav-stars"><span>⭐</span>Stars</div>
-<div onclick="show('profile')" id="nav-profile"><span>👤</span>Profile</div>
-</div>
+<div class="bottom"><div onclick="show('home')" id="nav-home" class="active"><span>🏠</span>Home</div><div onclick="show('music')" id="nav-music"><span>🎵</span>Music</div><div onclick="show('translate')" id="nav-translate"><span>🌍</span>Translate</div><div onclick="show('stars')" id="nav-stars"><span>⭐</span>Stars</div><div onclick="show('profile')" id="nav-profile"><span>👤</span>Profile</div></div>
 
 <script>
-setTimeout(()=>{document.getElementById('loader').style.display='none';let s=localStorage.getItem('lb');if(s){enter();}else{document.getElementById('auth').classList.remove('hidden');}},2500);
-function login(){let e=document.getElementById('em').value||'mannyfunds8@gmail.com';localStorage.setItem('lb',e);enter();}
-function enter(){document.getElementById('auth').classList.add('hidden');document.getElementById('app').classList.remove('hidden');let e=localStorage.getItem('lb');let n=e.split('@')[0];document.getElementById('uName').innerText=n;document.getElementById('pName').innerText=n;show('home');}
-function show(p){['home','translate','music','stars','transact','profile'].forEach(x=>{let el=document.getElementById('page-'+x);if(el)el.classList.add('hidden');});let map={home:'home',translate:'translate',music:'music',stars:'stars',transact:'transact',profile:'profile'};document.getElementById('page-'+map[p]).classList.remove('hidden');document.querySelectorAll('.bottom div').forEach(d=>d.classList.remove('active'));let nav=document.getElementById('nav-'+p);if(nav)nav.classList.add('active');window.scrollTo(0,0);}
-function doT(){let t=document.getElementById('tin').value.toLowerCase();let to=document.getElementById('to').value;let m={hello:{ha:'Sannu',yo:'E nle',ig:'Ndewo',en:'Hello',fr:'Bonjour'},'how are you':{ha:'Yaya kake?',yo:'Bawo ni?',ig:'Kedu?'},'thank you':{ha:'Na gode',yo:'E se',ig:'Daalu'},'i love you':{ha:'Ina son ka',yo:'Mo nife e',ig:'A hurum gi nanya'}};let f='...';for(let k in m){if(t.includes(k))f=m[k][to]||m[k].en}document.getElementById('tout').innerHTML='<b style="color:#FFD700">Result:</b><br>'+(f==='...'?'Translation: '+document.getElementById('tin').value+' in '+to:f);}
-</script>
-</body>
-                                                                                                          </html>
+let countries=[["Nigeria","Hausa","Sannu"],["Nigeria","Yoruba","E nle"],["Nigeria","Igbo","Ndewo"],["Ghana","Twi","Maakye"],["France","French","Bonjour"],["Spain","Spanish","Hola"],["Germany","German","Hallo"],["Italy","Italian","Ciao"],["Brazil","Portuguese","Olá"],["Japan","Japanese","Konnichiwa"],["China","Chinese","Ni Hao"],["India","Hindi","Namaste"],["Kenya","Swahili","Jambo"],["South Africa","Zulu","Sawubona"],["Egypt","Arabic","Marhaba"],["USA","English","Hello"],["UK","English","Hello"],["Canada","French","Bonjour"],["Russia","Russian","Privet"],["Korea","Korean","Annyeong"]];
+let songs=[["Asake - Lonely At The Top","Yoruba / English","Lonely at the top - Mo wa loke, mo nikan"],["Burna Boy - City Boys","English / Pidgin","City Boys - We dey ball for city"],["Davido - Feel","English / Yoruba","I feel am - Mo feel e gan"],["Ayra Starr - Rush","English","Rush - I no dey rush, I dey go"],["Rema - Calm Down","English / Pidgin","Calm down - Make you calm down"]];
+function renderCountry(f=""){let h="";countries.filter(c=>c[0].toLowerCase().includes(f.toLowerCase())||c[1].toLowerCase().includes(f.toLowerCase())).slice(0,10).forEach(c=>{h+=`<div class="langItem" onclick="pickCountry('${c[0]}','${c[1]}','${c[2]}')"><span>🌍 ${c[0]} - <b>${c[1]}</b></span><span class="gold">Select →</span></div>`});document.getElementById('countryList').innerHTML=h||"<p style='color:#aaa;margin-top:8px'>No country found, try Nigeria, France, Japan...</p>"}
+function filterCountry(){renderCountry(document.getElementById('searchCountry').value)}
+function pickCountry(co,la,ex){document.getElementById('toLang').innerHTML=`<option>${la} - ${co}</option>`;document.getElementById('tin').value="Hello";document.getElementById('tout').innerHTML=`<b class="gold">Selected: ${co} - ${la}</b><br>Hello in ${la} = <b>${ex}</b>`}
+function renderSong(f=""){let h="";songs.filter(s=>s[0].toLowerCase().includes(f.toLowerCase())).forEach(s=>{h+=`<div class="langItem" onclick="pickSong('${s[0]}','${s[2]}')"><span>🎵 <b>${s[0]}</b><br><small style="color:#aaa">${s[1]}</small></span><span class="gold">Translate →</span></div>`});document.getElementById('songList').innerHTML=h}
+function filterSong(){renderSong(document.getElementById('songSearch').value)}
+function pickSong(t,tr){document.getElementById('songTrans').innerHTML=`<b class="gold">${t}</b><br><br>Translation: ${tr}<br><br><button class="btn" style="width:auto;padding:8px 16px;margin-top:8px" onclick="alert('Playing on Spotify / Boomplay / Audiomack...')">▶ PLAY ON SPOTIFY / BOOMPLAY</button>`}
+setTimeout(()=>{document.getElementById('loader').style.display='none';if(localStorage.getItem('lb'))enter();else document.getElementById('auth').classList.remove('hidden');renderCountry();renderSong();},2000);
+function login(){localStorage.setItem('lb',document.getElementById('em').value||'mannyfunds8@gmail.com');enter()}
+function enter(){document.getElementById('auth').classList.add('hidden');document.getElementById('app').classList.remove('hidden');let e=localStorage.getItem('lb');let n=e.split('@')[0];document.getElementById('uName').innerText=n;document.getElementById('pName').innerText=n;show('home');renderCountry();renderSong()}
+function show(p){['home','translate','music','stars','transact','profile'].forEach(x=>{let el=document.getElementById('page-'+x);if(el)el.classList.add('hidden')});document.getElementById('page-'+p).classList.remove('hidden');document.querySelectorAll('.bottom div').forEach(d=>d.classList.remove('active'));let nav=document.getElementById('nav-'+p);if(nav)nav.classList.add('active');window.scrollTo(0,0)}
+function doT(){let t=document.getElementById('tin').value;let to=document.getElementById('toLang').value;let found=countries.find(c=>to.includes(c[1]));document.getElementById('tout').innerHTML=`<b class="gold">Result:</b><br>"${t}" in ${to} = <b>${found?found[2]:t}</b>`}
+</script></body></html>
